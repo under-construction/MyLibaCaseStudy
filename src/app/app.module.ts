@@ -1,6 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { DxButtonModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxDataGridModule, DxTextBoxModule } from 'devextreme-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +16,9 @@ import { PersonalEditComponent } from './personal-edit/personal-edit.component';
     BrowserModule,
     AppRoutingModule,
     DxButtonModule,
-    DxTextBoxModule
+    DxTextBoxModule,
+    HttpClientModule,
+    DxDataGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]

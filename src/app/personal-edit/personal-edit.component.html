@@ -1,7 +1,7 @@
 <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
     <h1 class="text-center mb-4">ADD/UPDATE PERSONAL</h1>
 
-    <div class="row justify-content-between w-75">
+    <div class="row w-75 justify-content-center">
         <div class="col-4 border m-3">
             <form class="p-3">
                 <div class="mb-3 row">
@@ -31,6 +31,22 @@
                     </div>
                 </div>
             </form>
+        </div>
+
+        <div class="col-4 border m-3">
+            <div class="pt-3" *ngFor="let i of memberList">
+                <div class="row">
+                    <div class="input-group">
+                        <input type="text" class="form-control p-1"
+                        aria-label="Recipient's username with two button addons"
+                        [value]="i.name">
+                        <dx-button class="btn btn-outline-secondary" type="button" icon="edit">
+                        </dx-button>
+                        <dx-button class="btn btn-outline-secondary" type="button" icon="trash">
+                        </dx-button>
+                      </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
