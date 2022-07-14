@@ -6,11 +6,13 @@ import { DxButtonModule, DxDataGridModule, DxTextBoxModule } from 'devextreme-an
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PersonalEditComponent } from './personal-edit/personal-edit.component';
+import { PersonelListComponent } from './personel-list/personel-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PersonalEditComponent
+    PersonalEditComponent,
+    PersonelListComponent
   ],
   imports: [
     BrowserModule,
