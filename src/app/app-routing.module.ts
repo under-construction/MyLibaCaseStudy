@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PersonalEditComponent } from './personal-edit/personal-edit.component';
 
 const routes: Routes = [
-  { path: '', component: PersonalEditComponent }
+  { path: '', loadChildren: () => import('./Modules/personal-routing.module').then(i => i.PersonalRoutingModule)}
 ];
 
 @NgModule({
