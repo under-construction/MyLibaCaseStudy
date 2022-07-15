@@ -37,7 +37,7 @@
             <div class="p-1" *ngFor="let i of memberList">
                 <div class="row">
                     <app-personel-list [id]="i.id" [name]="i.name" [surname]="i.surname" [email]="i.email"
-                    (updateModel)="updatePersonal($event)"
+                    (updateModel)="updateModel($event)"
                     (deleteId)="deletePersonal($event)">
                     </app-personel-list>
                 </div>

@@ -27,7 +27,7 @@ export class PersonalEditComponent implements OnInit {
 
   btnClick(): void {
     if (this.btnAdd.element.nativeElement.innerText == 'Update') {
-      this.x();
+      this.updatePersonal();
     }
     else {
       this.insertPersonal();
@@ -65,7 +65,7 @@ export class PersonalEditComponent implements OnInit {
     )
   }
 
-  updatePersonal(model: any) {
+  updateModel(model: any) {
     this.selectedId = model.id;
     this.name = model.name;
     this.surname = model.surname;
@@ -74,7 +74,7 @@ export class PersonalEditComponent implements OnInit {
     this.btnAdd.element.nativeElement.innerText = "Update";
   }
 
-  x() {
+  updatePersonal() {
     this.personalEditService.Update({
       id: this.selectedId,
       name: this.name,
