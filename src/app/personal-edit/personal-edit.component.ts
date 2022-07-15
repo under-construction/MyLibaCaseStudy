@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PersonalEditService } from 'src/Services/personal-edit.service';
 
 @Component({
@@ -9,25 +8,33 @@ import { PersonalEditService } from 'src/Services/personal-edit.service';
 })
 export class PersonalEditComponent implements OnInit {
 
+  selectedId!: number;
   name!: string;
   surname!: string;
   email!: string;
   memberList!: any[];
   maxId!: number;
+  
+  @ViewChild("btnAdd") btnAdd!: any;
 
   constructor(
     private personalEditService: PersonalEditService
     ) { }
 
   ngOnInit(): void {
-    this.GetAllPersonals();
+    this.getAllPersonals();
   }
 
-  addClick(): void {
-    this.InsertPersonal();
+  btnClick(): void {
+    if (this.btnAdd.element.nativeElement.innerText == 'Update') {
+      this.updatePersonal();
+    }
+    else {
+      this.insertPersonal();
+    }
   }
 
-  GetAllPersonals() {
+  getAllPersonals() {
     this.personalEditService.GetAll()
     .subscribe(
       res => {
@@ -39,7 +46,7 @@ export class PersonalEditComponent implements OnInit {
     )
   }
 
-  InsertPersonal() {
+  insertPersonal() {
     this.getMaxId();
     this.personalEditService.Insert({
       id: this.maxId + 1,
@@ -49,7 +56,8 @@ export class PersonalEditComponent implements OnInit {
     })
     .subscribe(
       () => {
-        this.GetAllPersonals();
+        this.getAllPersonals();
+        this.clearForm();
       },
       err => {
         console.log(err.message);
@@ -57,11 +65,39 @@ export class PersonalEditComponent implements OnInit {
     )
   }
 
-  DeletePersonal(id: number) {
+  updateModel(model: any) {
+    this.selectedId = model.id;
+    this.name = model.name;
+    this.surname = model.surname;
+    this.email = model.email;
+
+    this.btnAdd.element.nativeElement.innerText = "Update";
+  }
+
+  updatePersonal() {
+    this.personalEditService.Update({
+      id: this.selectedId,
+      name: this.name,
+      surname: this.surname,
+      email: this.email
+    })
+    .subscribe(
+      () => {
+        this.getAllPersonals();
+        this.clearForm();
+        this.btnAdd.element.nativeElement.innerText = "Add";
+      },
+      err => {
+        console.log(err.message);
+      }
+    )
+  }
+
+  deletePersonal(id: number) {
     this.personalEditService.Delete(id)
     .subscribe(
       () => {
-        this.GetAllPersonals();
+        this.getAllPersonals();
       },
       err => {
         console.log(err.message);
@@ -71,5 +107,11 @@ export class PersonalEditComponent implements OnInit {
 
   private getMaxId() {
     this.maxId = Math.max(...this.memberList.map(i => i.id));
+  }
+
+  private clearForm() {
+    this.name = '';
+    this.surname = '';
+    this.email = '';
   }
 }

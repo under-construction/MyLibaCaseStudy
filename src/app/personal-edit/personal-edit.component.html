@@ -27,24 +27,19 @@
 
                 <div class="row">
                     <div class="col mb-2">
-                        <dx-button text="Add" class="btn btn-success float-end" (onClick)="addClick()"></dx-button>
+                        <dx-button text="Add" class="btn btn-success float-end" (onClick)="btnClick()" #btnAdd></dx-button>
                     </div>
                 </div>
             </form>
         </div>
 
-        <div class="col-4 border m-3">
-            <div class="pt-3" *ngFor="let i of memberList">
+        <div class="col-5 border m-3">
+            <div class="p-1" *ngFor="let i of memberList">
                 <div class="row">
-                    <div class="input-group">
-                        <input type="text" class="form-control p-1"
-                        aria-label="Recipient's username with two button addons"
-                        [value]="i.name">
-                        <dx-button class="btn btn-outline-secondary" type="button" icon="edit">
-                        </dx-button>
-                        <dx-button class="btn btn-outline-secondary" type="button" icon="trash">
-                        </dx-button>
-                      </div>
+                    <app-personel-list [id]="i.id" [name]="i.name" [surname]="i.surname" [email]="i.email"
+                    (updateModel)="updateModel($event)"
+                    (deleteId)="deletePersonal($event)">
+                    </app-personel-list>
                 </div>
             </div>
         </div>

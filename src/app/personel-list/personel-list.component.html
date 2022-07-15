@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="input-group">
+        <input type="text" class="form-control p-2"
+        aria-label="Recipient's username with two button addons"
+        [value]="fullText" readonly>
+        <dx-button class="btn btn-outline-secondary btn-primary" type="button" icon="edit"
+        (onClick)="updatePersonal()">
+        </dx-button>
+        <dx-button class="btn btn-outline-secondary btn-danger" type="button" icon="trash"
+        (onClick)="deletePersonal()">
+        </dx-button>
+      </div>
+</div>
